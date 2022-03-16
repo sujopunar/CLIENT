@@ -1,15 +1,18 @@
 const mongoose = require("mongoose");
 
-const LoginSchema = new mongoose.Schema({
+const loginSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   isAdmin: { type: Boolean, default: false },
 });
 
-const SignupSchema = new mongoose.Schema({
+const signupSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
   streetNumber: { type: Boolean, required: true },
 });
 
-module.exports = mongoose.model("User", Schema);
+const login = mongoose.model("login", loginSchema);
+const signup = mongoose.model("signup", signupSchema);
+module.exports = { login, signup };
