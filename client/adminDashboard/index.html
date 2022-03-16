@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     admin
-    <button >   
-        logout
-
-        </button>
-    
-</body>
-<script>
-    if(localStorage.getItem('adminLogedIn')==='true'){
-        
-    }  else{
-        window.location.href = "../index.html";
+    <button>logout</button>
+  </body>
+  <script>
+    //This is to prevent users from accessing the admin screen directly through the url by setting a boolean adminlogged in which is only set to true when admin has been validated
+    if (localStorage.getItem("adminLogedIn") === "true") {
+    } else {
+      window.location.href = "../index.html";
     }
     function logout() {
-        window.location.href = "../index.html";
-        localStorage.setItem('adminLogedIn', false);
+      window.location.href = "../index.html";
+      localStorage.setItem("adminLogedIn", false);
     }
-</script>
+  </script>
 </html>
