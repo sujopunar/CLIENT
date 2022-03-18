@@ -1,12 +1,13 @@
 const { Router } = require("express");
 const router = new Router();
-const User = require("../models/signup");
+const {signup} = require("../models/signup");
 const bcrypt = require("bcrypt");
 
 router.post("/signup", async (request, response) => {
-  const { username, password } = request.body;
+  const { username, password,phone,lastBillPaidDate } = request.body;
+  console.log(request.body)
 
-  const emailExists = await User.findOne({ username });
+  const emailExists = await signup.findOne({ username });
   if (emailExists) {
     return response.status(404).json("email already exists");
   }
@@ -14,7 +15,7 @@ router.post("/signup", async (request, response) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  const user = new User({ username, password: hashedPassword });
+  const user = new signup({ username, password: hashedPassword,phoneNumber:phone,lastBillPaidDate });
   try {
     const newUser = await user.save();
     response.status(200).json(newUser);
@@ -26,19 +27,19 @@ router.post("/signup", async (request, response) => {
 
 router.post("/login", async (request, response) => {
   const { username, password } = request.body;
-  const user = await User.findOne({ username });
+  const user = await signup.findOne({ username });
   if (!user) {
     return response.status(404).json("email not found");
   }
 
   console.log(request.body);
   const isMatch = await bcrypt.compare(password, user.password);
-  console.log(isMatch);
   if (!isMatch) {
     return response.status(404).json("password incorrect");
   }
 
   response.status(200).json(user);
 });
+
 
 module.exports = router;
