@@ -1,30 +1,75 @@
+
 const form = document.querySelector('form')
-const btn = document.querySelector('.btn');
+const login = document.querySelector('.login')
+
+
+const alertBox = document.querySelector('.alert')
+alertBox.style.display = 'none'
 
 form.onsubmit = async (event)=>{
     event.preventDefault()
-    if(!(form.username.value) && !(form.password.value) &&!(form.phone.value)) {
-        console.log('please input usename & password')
-        return 
-    }
 
+    let image = false
+    //VALIDATION
+  if(form.profile.files[0]) {
+        // BASE 64 CONVERTION OF THE IMAGE.
+        const file = form.profile.files[0];
+        image = await base64(file);
+  }
+
+
+    if(!(form.lastName.value) && !(form.firstName.value) && !(form.password.value) && !(form.phone.value) && !(form.email.value)) {
+        console.log(alertBox)
+         alertBox.style.display = 'block'
+         alertBox.innerHTML = 'Please Inter All fields'
+         return 
+        }
+        
+    alertBox.style.display = 'none'
     const response = await fetch("http://localhost:3000/signup", {
         method:'POST',
         body:JSON.stringify({
-            username:form.username.value,
+            firstName:form.firstName.value,
+            lastName:form.lastName.value,
             password:form.password.value,
             phone:form.phone.value,
-            lastBillPaidDate:new Date()
+            email:form.email.value,
+            street:"California Street (SY-NC-BS)",
+            profile:image?image:'noImage'
         }),
         headers:{
             "Content-type":"application/json; charset=UTF-8"
         }
     })
-    console.log('herer')
     const data = await response.json()
+    if(data.status){
 
-    console.log(data)
+        alertBox.style.display ='block'
+        alertBox.innerHTML =data.message
+    }
+    if(data._id){
+        window.location.href = '/client/userDashboard/index.html?id='+data._id
+    }
 
     console.log('clicked')
 }
     
+
+login.onclick = ()=>{
+    window.location.href = '/client/login/login.html'
+}
+
+
+const base64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+  
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };

@@ -7,7 +7,10 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./app.js" defer></script>
   <title>Document</title>
 </head>
@@ -25,19 +28,29 @@
 
 <body>
   <div class="container">
-    <button type="button" class="btn btn-dark logout">logout</button>
+    <div class="mt-4 d-flex justify-content-end">
 
-    <table class="table ">
-      <thead>
+      <button type="button" class="btn btn-dark logout " style="width:6rem">logout</button>
+    </div>
+    
+    <div class="input-group rounded mt-4 mb-4">
+      <input type="search" class="form-control rounded searchBar" placeholder="Search by Name or Email..." aria-label="Search" aria-describedby="search-addon" name="searchBar" />
+      <button type="button" class="btn btn-primary searchBtn" style="width:6rem" >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    <table class="table align-middle mb-0 bg-white table-hover">
+      <thead class="bg-dark" style="color:white;">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">USER NAME</th>
-          <th scope="col">LAST PAID DATE</th>
-          <th scope="col">PAYMENT DUE FOR</th>
-          <th scope="col">PAYMENT RECEIPT</th>
+          <th>INFORMATION</th>
+          <th>CONTACT</th>
+          <th> DUE FOR</th>
+          <th>STREET</th>
+          <th>PAYMENT STATUS</th>
+          <th>PAYMENT RECEIPT</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody style="cursor:pointer">
 
 
       </tbody>
