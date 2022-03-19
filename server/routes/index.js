@@ -4,8 +4,18 @@ const {signup} = require("../models/signup");
 const bcrypt = require("bcrypt");
 
 router.post("/signup", async (request, response) => {
+<<<<<<< HEAD
   const { firstName,lastName, password, phone,email,street,profile } = request.body;
   
+=======
+<<<<<<< HEAD
+  const { firstName,lastName, password, phone,email,street,profile } = request.body;
+  
+=======
+  const { firstName,lastName, password, phone,email,street } = request.body;
+
+>>>>>>> c9dd9e6c25999a9a4ee8542aa2d0ef465b0133ec
+>>>>>>> d313d435e1b285abc535a9bf4ef39d2c4d8b6bae
   const emailExists = await signup.findOne({ email });
   if (emailExists) {
     return response.status(404).json({message:"email already exists",status:true});
