@@ -6,6 +6,8 @@ const Routes = require('./routes')
 const mongoose = require('mongoose')
 const billRoutes = require('./routes/userBill')
 const allUsers = require('./routes/allUsers');
+const dotenv = require('dotenv')
+
 
 app.use(cors({
     origin: true,
@@ -13,6 +15,7 @@ app.use(cors({
 }))
 
 app.use(express.json({limit: '50mb'}))
+dotenv.config()
 
 const url = "mongodb+srv://Access_db:12345@cluster0.o0o0t.mongodb.net/Security_Guard_Website?retryWrites=true&w=majority"
 

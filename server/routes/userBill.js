@@ -3,10 +3,10 @@ const router = new Router()
 const { signup } = require('../models/signup')
 
 router.post('/userbill', (request, response) => {
-        const { userId, billImage,lastBillPaidDate } = request.body;
+        const { userId, billImage } = request.body;
 
         console.log('here',userId)
-    signup.findByIdAndUpdate(userId, { lastBillPaidImage: billImage,lastBillPaidDate:lastBillPaidDate, },
+    signup.findByIdAndUpdate(userId, { lastBillPaidImage: billImage,lastBillPaidDate:new Date(), },
         function (error, docs) {
             if (error) {
                 console.log(error)

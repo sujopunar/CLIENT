@@ -7,7 +7,9 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="./app.js" defer></script>
   <title>Document</title>
 </head>
@@ -25,16 +27,20 @@
 
 <body>
   <div class="container">
-    <button type="button" class="btn btn-dark logout">logout</button>
+    <div class="m-4">
 
-    <table class="table ">
-      <thead>
+      <button type="button" class="btn btn-dark logout">logout</button>
+    </div>
+
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">USER NAME</th>
-          <th scope="col">LAST PAID DATE</th>
-          <th scope="col">PAYMENT DUE FOR</th>
-          <th scope="col">PAYMENT RECEIPT</th>
+          <th>INFORMATION</th>
+          <th>CONTACT</th>
+          <th> DUE FOR</th>
+          <th>STREET</th>
+          <th>PAYMENT STATUS</th>
+          <th>PAYMENT RECEIPT</th>
         </tr>
       </thead>
       <tbody>
