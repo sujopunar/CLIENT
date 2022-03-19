@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const signupSchema = new mongoose.Schema({
+<<<<<<< HEAD
   profile:{type:String,require:false},
+=======
+>>>>>>> c9dd9e6c25999a9a4ee8542aa2d0ef465b0133ec
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   email: { type: String, required: true },
