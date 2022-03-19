@@ -1,7 +1,4 @@
-console.log('here')
-
 const form = document.querySelector('form')
-
 
   //GETTING USER ID FROM PARAMS
   address = window.location.search
@@ -9,15 +6,17 @@ const form = document.querySelector('form')
   const id = parameterList.get("id")
 
   const alerta = document.querySelector('.alert');
-  console.log(alerta)
+
 async function fetchLogedInUser () {
+
   const user =  await fetch(`http://localhost:3000/user/${id}`)
   const userObject = await user.json()
-  console.log(userObject)
+
   const monthsBillNotPaid = window.moment().diff(window.moment(userObject[0].lastBillPaidDate),'months');
-  console.log(monthsBillNotPaid,userObject)
+
  alerta.querySelector('.month').innerHTML = monthsBillNotPaid;
  alerta.querySelector('.bill').innerHTML = "$" + monthsBillNotPaid*400;
+ 
 }
 fetchLogedInUser()
 
@@ -39,8 +38,7 @@ form.onsubmit = async (event) => {
     method: 'POST',
     body: JSON.stringify({
       userId: id,
-      billImage:image,
-      lastBillPaidDate:new Date()
+      billImage:image
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"

@@ -1,18 +1,28 @@
 const form = document.querySelector('form')
 const btn = document.querySelector('.btn');
 
+const signUp = document.querySelector('.signUp')
+
+
+const alertBox = document.querySelector('.alert')
+alertBox.style.display = 'none'
+
 form.onsubmit = async (event)=>{
     event.preventDefault()
 
-    if(!(form.username.value) && !(form.password.value)) {
-        console.log('please input usename & password')
-        return 
-    }
+    if(!(form.password.value) && !(form.email.value)) {
+        console.log(alertBox)
+         alertBox.style.display = 'block'
+         alertBox.innerHTML = 'Please Inter All fields'
+         return 
+        }
+        
+    alertBox.style.display = 'none'
 
     const response = await fetch("http://localhost:3000/login", {
         method:'POST',
         body:JSON.stringify({
-            username:form.username.value,
+            email:form.email.value,
             password:form.password.value,
         }),
         headers:{
@@ -21,9 +31,11 @@ form.onsubmit = async (event)=>{
     })
 
     const data = await response.json()
-
-    console.log(data)
-    if(data.username){
+    if(data.status){
+        alertBox.style.display = 'block'
+        alertBox.innerHTML = data.message
+    }
+    if(data._id){
 
         if(data.isAdmin){
             localStorage.setItem('adminLogedIn',true)
@@ -37,3 +49,7 @@ form.onsubmit = async (event)=>{
 
 }
     
+
+signUp.onclick = ()=>{
+    window.location.href = '/client/signup/signup.html'
+}

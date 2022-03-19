@@ -10,25 +10,35 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <!-- Content here -->
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp">
-          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-        </div> -->
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label" >Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1"  name="password">
-        </div>
-        <!-- <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div> -->
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <a href="../index.html">HOME</a>
-</div>
+    
+    <div class="container d-flex justify-content-center p-4">
+        <form style="width:35rem">
+        
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input type="email" id="form3Example3" class="form-control" placeholder="Email address" name="email"/>
+          </div>
+        
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="form3Example4" class="form-control" placeholder="Password" name="password"/>
+          </div>
+        
+
+          <div class="message">
+            <div class="alert alert-danger" role="alert">
+              This is a danger alert—check it out!
+            </div>
+          </div>
+          <!-- Submit button -->
+          <div class="d-flex">
+            
+            <button type="submit" class="btn btn-primary btn-block mb-4 w-100 m-2">Sign up</button>
+              <button class="btn signUp btn-success btn-block mb-4 w-100 m-2">SignUp Instead</button>
+          </div>
+  
+        </form>
+      </div>
+  
 </body>
 </html>
