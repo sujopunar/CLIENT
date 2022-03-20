@@ -13,7 +13,7 @@ async function fetchSingleUser() {
   name.innerHTML = data[0].firstName;
 
   const tr = document.createElement("tr");
-  tr.classList.add(userData[k]._id);
+  tr.classList.add(userData[0]._id);
   tr.innerHTML = `
     <td >
               <div class="d-flex align-items-center">
@@ -24,18 +24,18 @@ async function fetchSingleUser() {
               class="rounded-circle"
               />
                 <div class="ms-3">
-                  <p class="fw-bold mb-1">${userData[k].firstName} ${
-    userData[k].lastName
+                  <p class="fw-bold mb-1">${userData[0].firstName} ${
+    userData[0].lastName
   }</p>
-                  <p class="text-muted mb-0">${userData[k].email}</p>
+                  <p class="text-muted mb-0">${userData[0].email}</p>
                 </div>
               </div>
             </td>
             <td>
-              <p class="text-muted mb-0">${userData[k].phone}</p>
+              <p class="text-muted mb-0">${userData[0].phone}</p>
               </td>
               <td>${duration} Months</td>
-              <td>${userData[k].street}</td>
+              <td>${userData[0].street}</td>
               <td>
                   <span style="background:${
                     duration > 0 ? "red" : "green"
