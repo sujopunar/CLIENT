@@ -6,7 +6,7 @@ alertBox.style.display = "none";
 
 form.onsubmit = async (event) => {
   event.preventDefault();
-
+  console.log("a");
   let image = false;
   //VALIDATION
   if (form.profile.files[0]) {
