@@ -9,45 +9,47 @@ async function fetchSingleUser() {
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
 
+  console.log(data);
   const name = document.querySelector(".firstName");
   name.innerHTML = data[0].firstName;
 
-  const tr = document.createElement("tr");
-  tr.classList.add(userData[0]._id);
-  tr.innerHTML = `
-    <td >
-              <div class="d-flex align-items-center">
-              <img
-              src=${src}
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-                <div class="ms-3">
-                  <p class="fw-bold mb-1">${userData[0].firstName} ${
-    userData[0].lastName
-  }</p>
-                  <p class="text-muted mb-0">${userData[0].email}</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p class="text-muted mb-0">${userData[0].phone}</p>
-              </td>
-              <td>${duration} Months</td>
-              <td>${userData[0].street}</td>
-              <td>
-                  <span style="background:${
-                    duration > 0 ? "red" : "green"
-                  };border-radius:10px;font-size:0.8rem;padding:0.2rem;color:white">${
-    duration > 0 ? "NOT PAID" : "PAID"
-  }</span>
-              </td>
-              <td>
-                  ${image}
-              </td>
-            </td>
-            `;
+  const td1 = document.querySelector(".email");
+  const td2 = document.querySelector(".firstName");
+  const td3 = document.querySelector(".lastName");
+  const td4 = document.querySelector(".phone");
+  const td5 = document.querySelector(".duration");
+  const td6 = document.querySelector(".street");
+
+  // const tbody = document.querySelector("tbody");
+  // // SETTING INNER HTML = "" SO THAT WE CAN START NEW EACH TIME THIS FUNCITON IS CALLED.
+  // tbody.innerHTML = "";
+
+  // FINDING USER LAST PAID DATE.
+  const duration = window
+    .moment()
+    .diff(window.moment(data[0].lastBillPaidDate), "months");
+
+  console.log(data);
+  console.log(td1, td2, td3, td4, td5, td6);
+  td1.innerHTML = data[0].email;
+  td2.innerHTML = data[0].firstName;
+  td3.innerHTML = data[0].lastName;
+  td4.innerHTML = data[0].phone;
+  td5.innerHTML = data[0].street;
+  td6.innerHTML = data[0].street;
+
+  if ((billRequest = true)) {
+    // CONDITIONAL RENDERING OF IMG TAG DEPENDING ON IF THE USER HAS SUBMIT A RECEIPT
+    let image = "";
+    if (data[0].lastBillPaidImage == "noImage") {
+      image = `<a>No Bill Paid</a>`;
+    } else {
+      image = `<a href=${data[0].lastBillPaidImage} download=${
+        "billImageOf" + data[0].username + ".png"
+      }>BILL IMAGE</a>`;
+    }
+    
+  }
 }
 
 fetchSingleUser();
