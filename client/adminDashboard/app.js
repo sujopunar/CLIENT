@@ -39,7 +39,7 @@ async function renderAllUsers(param, searchData) {
     if (userData[k].lastBillPaidImage == 'noImage') {
       image = `<a>No Bill Paid</a>`
     } else {
-      image = `<a href=${userData[k].lastBillPaidImage} download=${'billImageOf' + userData[k].username + ".png"}>BILL IMAGE</a>`
+      image = `<a href=${userData[k].lastBillPaidImage} download=${'billImageOf' + userData[k].firstName + ".png"}>BILL IMAGE</a>`
     }
     let src=userData[k].profile==="noImage"?"./profile.png":userData[k].profile
 

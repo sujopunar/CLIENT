@@ -39,7 +39,7 @@ form.onsubmit = async (event)=>{
 
         if(data.isAdmin){
             localStorage.setItem('adminLogedIn',true)
-            window.location.href = '/client/adminDashboard/index.html?id='+data._id
+            window.location.href = '/client/adminDashboard/index.html'
         }else{
             window.location.href = "/client/userDashboard/index.html?id="+data._id
             localStorage.setItem('adminLogedIn',false)
