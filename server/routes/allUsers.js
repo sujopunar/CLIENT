@@ -11,7 +11,7 @@ router.get('/allusers',async (request,response)=>{
 
 router.get('/user/:id',async (request,response)=>{
     const {id} = request.params
-    const user = await signup.find({_id:id}).select("firstName lastName lastBillPaidDate profile lastBillPaidImage email phone street lastBillPaidImage")
+    const user = await signup.find({_id:id}).select("firstName lastName lastBillPaidDate profile lastBillPaidImage email phone street lastBillPaidImage requestForApproval requestForApprovalDate")
     response.json(user)    
 })
 

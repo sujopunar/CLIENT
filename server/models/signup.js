@@ -10,6 +10,8 @@ const signupSchema = new mongoose.Schema({
   street: { type: String, required: true },
   streetNumber: { type: Boolean, required: false },
   lastBillPaidDate: { type: Date, required: false, default: new Date().toISOString() },
+  requestForApproval: { type: String, required: true, default: 'noRequest' },
+  requestForApprovalDate: { type: Date, required: false, default: new Date().toISOString()},
   isAdmin: { type: Boolean, default: false },
   lastBillPaidImage: { type: String, require: false, default: 'noImage' }
 }, { timestamps: true });
