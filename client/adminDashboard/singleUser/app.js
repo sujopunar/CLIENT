@@ -10,8 +10,6 @@ async function fetchSingleUser() {
   const data = await response.json();
 
   console.log(data);
-  const name = document.querySelector(".firstName");
-  name.innerHTML = data[0].firstName;
 
   const td1 = document.querySelector(".email");
   const td2 = document.querySelector(".firstName");
