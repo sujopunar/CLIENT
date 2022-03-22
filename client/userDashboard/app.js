@@ -1,58 +1,66 @@
-const form = document.querySelector('form')
+const form = document.querySelector("form");
 
-  //GETTING USER ID FROM PARAMS
-  address = window.location.search
-  parameterList = new URLSearchParams(address)
-  const id = parameterList.get("id")
+//GETTING USER ID FROM PARAMS
+address = window.location.search;
+parameterList = new URLSearchParams(address);
+const id = parameterList.get("id");
 
-  const alerta = document.querySelector('.alert');
+const alerta = document.querySelector(".alert");
 
-  let userObject;
-async function fetchLogedInUser () {
+let userObject;
+async function fetchLogedInUser() {
+  const user = await fetch(`http://localhost:3000/user/${id}`);
+  userObjectForFunction = await user.json();
+  userObject = userObjectForFunction;
+  const monthsBillNotPaid = window
+    .moment()
+    .diff(window.moment(userObjectForFunction[0].lastBillPaidDate), "months");
 
-  const user =  await fetch(`http://localhost:3000/user/${id}`)
-   userObjectForFunction = await user.json()
-  userObject = userObjectForFunction
-  const monthsBillNotPaid = window.moment().diff(window.moment(userObjectForFunction[0].lastBillPaidDate),'months');
-
- alerta.querySelector('.month').innerHTML = monthsBillNotPaid;
- alerta.querySelector('.bill').innerHTML = "$" + monthsBillNotPaid*400;
- 
+  alerta.querySelector(".month").innerHTML = monthsBillNotPaid;
+  alerta.querySelector(".bill").innerHTML = "$" + monthsBillNotPaid * 400;
+  const message = document.querySelector(".p");
+  if (userObject[0].userId.approved) {
+    message.querySelector(".p").innerHTML = "Accepted";
+  } else if (userObject[0].userId.rejected) {
+    message.querySelector(".p").innerHTML = "Rejected";
+  } else if (userObject[0].userId.noRequest) {
+    message.querySelector(".p").innerHTML = "";
+  } else if (userObject[0].userId.pending) {
+    message.querySelector(".p").innerHTML = "Pending";
+  }
 }
-fetchLogedInUser()
+fetchLogedInUser();
 
 form.onsubmit = async (event) => {
-  event.preventDefault()
+  event.preventDefault();
 
   //VALIDATION
-  if(!form.file.files[0]) {
-    console.log('please select an image')
-    return
+  if (!form.file.files[0]) {
+    console.log("please select an image");
+    return;
   }
 
   // BASE 64 CONVERTION OF THE IMAGE.
   const file = form.file.files[0];
- const image = await base64(file)
+  const image = await base64(file);
 
   //POSTING TO UPDATE LASTBILLDATE
   const response = await fetch("http://localhost:3000/userbill", {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify({
       userId: id,
-      billImage:image
+      billImage: image,
     }),
     headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
-  })
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
 
-  const data = await response.json()
-  
+  const data = await response.json();
+
   //RESPONSE TO USER
-  console.log(data)
-
-}
-
+  console.log(data);
+};
 
 const base64 = (file) => {
   return new Promise((resolve, reject) => {
