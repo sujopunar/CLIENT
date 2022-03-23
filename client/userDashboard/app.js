@@ -1,9 +1,15 @@
-const form = document.querySelector('form')
+const form = document.querySelector("form");
+//logout
+const btn = document.querySelector(".logout");
 
   //GETTING USER ID FROM PARAMS
   address = window.location.search
   parameterList = new URLSearchParams(address)
   const id = parameterList.get("id")
+btn.onclick = () => {
+  localStorage.setItem("adminLogedIn", "false");
+  window.location.href = "/client/index.html";
+};
 
   const alerta = document.querySelector('.alert');
 

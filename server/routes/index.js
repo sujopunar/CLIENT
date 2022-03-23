@@ -15,6 +15,12 @@ router.post("/signup", async (request, response) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const user = new signup({ firstName,lastName, password: hashedPassword,phone,email,street,profile });
+    password: hashedPassword,
+    phone,
+    email,
+    street,
+    profile,
+  });
   try {
     const newUser = await user.save();
     response.status(200).json(newUser);
@@ -29,18 +35,20 @@ router.post("/login", async (request, response) => {
 
   const user = await signup.findOne({ email });
   if (!user) {
-    return response.status(404).json({message:"email not found",status:true});
+    return response
+      .status(404)
+      .json({ message: "email not found", status: true });
   }
 
   console.log(request.body);
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    return response.status(404).json({message:"password incorrect",status:true});
+    return response
+      .status(404)
+      .json({ message: "password incorrect", status: true });
   }
 
   response.status(200).json(user);
 });
-
-
 
 module.exports = router;
