@@ -3,6 +3,7 @@ const router = new Router();
 const {signup} = require("../models/signup");
 const bcrypt = require("bcrypt");
 
+//Success criterion 2 each user should only be able to log in once
 router.post("/signup", async (request, response) => {
   const { firstName,lastName, password, phone,email,street,profile } = request.body;
   

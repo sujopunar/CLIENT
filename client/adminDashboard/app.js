@@ -32,7 +32,9 @@ async function renderAllUsers(param, searchData) {
   for (let k = 0; k < userData.length; k++) {
 
     // FINDING USER LAST PAID DATE.
-    const duration = window.moment().diff(window.moment(userData[k].lastBillPaidDate), 'months');
+    const duration = window
+      .moment()
+      .diff(window.moment(userData[k].lastBillPaidDate), "months");
 
     // CONDITIONAL RENDERING OF IMG TAG DEPENDING ON IF THE USER HAS SUBMIT A RECEIPT
     let image = "";
