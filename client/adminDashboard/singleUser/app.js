@@ -24,12 +24,11 @@ async function fetchSingleUser() {
   class="profile-image rounded-circle img-fluid"
   style="width: 150px"
 />
-<h5 class="my-3">${profileData.firstName + ' ' + profileData.lastName}</h5>
-<p class="text-muted mb-1">Full Stack Developer</p>
-<p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+<h5 class="my-3">${profileData.firstName}</h5>
+<p class="text-muted mb-4">${profileData.street}</p>
 <div class="d-flex justify-content-center mb-2">
-  <button type="button" class="btn btn-primary">Reject</button>
-  <button type="button" class="btn btn-outline-primary ms-1">
+  <button type="button" class="btn btn-primary reject">Reject</button>
+  <button type="button" class="btn btn-outline-primary ms-1 approve">
     Approve
   </button>
 </div>
@@ -88,7 +87,7 @@ async function fetchSingleUser() {
   <img
   src="${profileData.lastBillPaidImage}"
   alt="avatar"
-  class="profile-image rounded-circle img-fluid"
+  class="profile-image img-fluid"
   style="width: 150px"
 />
   `;
@@ -107,6 +106,33 @@ async function fetchSingleUser() {
     Download Image
     </a>
   `;
+
+  const approve = document.querySelector('.approve')
+  const reject = document.querySelector('.reject')
+  approve.onclick=async ()=>{
+    const response = await fetch("http://localhost:3000/userbill/approval", {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: profileData._id,
+      approved:true
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  }
+  reject.onclick=async ()=>{
+    const response = await fetch("http://localhost:3000/userbill/approval", {
+    method: 'POST',
+    body: JSON.stringify({
+      userId: profileData._id,
+      approved:false
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  }
 }
 
 fetchSingleUser();

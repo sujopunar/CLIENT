@@ -7,12 +7,13 @@ const form = document.querySelector('form')
 
   const alerta = document.querySelector('.alert');
 
+  let userObject;
 async function fetchLogedInUser () {
 
   const user =  await fetch(`http://localhost:3000/user/${id}`)
-  const userObject = await user.json()
-
-  const monthsBillNotPaid = window.moment().diff(window.moment(userObject[0].lastBillPaidDate),'months');
+   userObjectForFunction = await user.json()
+  userObject = userObjectForFunction
+  const monthsBillNotPaid = window.moment().diff(window.moment(userObjectForFunction[0].lastBillPaidDate),'months');
 
  alerta.querySelector('.month').innerHTML = monthsBillNotPaid;
  alerta.querySelector('.bill').innerHTML = "$" + monthsBillNotPaid*400;
@@ -48,11 +49,7 @@ form.onsubmit = async (event) => {
   const data = await response.json()
   
   //RESPONSE TO USER
-  if(data.billPaid){
-    alert('paid')
-  }else{
-    alert('not paid')
-  }
+  console.log(data)
 
 }
 
